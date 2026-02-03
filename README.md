@@ -118,6 +118,22 @@ See `.env.example` for required environment variables.
 
 This project follows Spec-Driven Development (SDD) methodology with comprehensive documentation in the `specs/` directory.
 
+## Deployment
+
+### GitHub Pages
+
+The frontend is automatically deployed to GitHub Pages using GitHub Actions. When changes are pushed to the main branch, the workflow will:
+
+1. Build the Next.js application for static export
+2. Deploy the static files to the `gh-pages` branch
+3. Host the site at `https://fariau.github.io/todo-chatbot/`
+
+To manually trigger deployment, you can run:
+```bash
+cd frontend
+npm run build-gh-pages
+```
+
 ## Contributing
 
 1. Fork the repository
