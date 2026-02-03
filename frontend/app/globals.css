@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 240, 249, 255;
+  --background-end-rgb: 255, 255, 255;
+  --primary-gradient-start: 59, 130, 246;
+  --primary-gradient-end: 147, 51, 234;
+  --accent-color: 99, 102, 241;
+  --card-bg-light: 255, 255, 255;
+  --card-bg-dark: 30, 41, 59;
+  --border-light: 229, 231, 235;
+  --border-dark: 55, 65, 81;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 30, 41, 59;
+    --primary-gradient-start: 99, 102, 241;
+    --primary-gradient-end: 139, 92, 246;
+    --accent-color: 139, 92, 246;
+    --card-bg-light: 255, 255, 255;
+    --card-bg-dark: 30, 41, 59;
+    --border-light: 229, 231, 235;
+    --border-dark: 55, 65, 81;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      135deg,
+      rgb(var(--background-start-rgb)) 0%,
+      rgb(var(--background-end-rgb)) 100%
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Background pattern overlay */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(var(--primary-gradient-start), 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(var(--primary-gradient-end), 0.03) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Additional styles for chat UI */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll, allow vertical */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--background-start-rgb), 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--primary-gradient-start), 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--primary-gradient-start), 0.5);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fade-in animation for messages */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Pulse animation for typing indicator */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce animation for typing dots */
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+}
+
+.bounce {
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.bounce.delay-75 {
+  animation-delay: 0.1s;
+}
+
+.bounce.delay-150 {
+  animation-delay: 0.2s;
+}
+
+/* Ripple effect for buttons */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 200px;
+  height: 200px;
+  animation: ripple 0.6s linear;
+}
