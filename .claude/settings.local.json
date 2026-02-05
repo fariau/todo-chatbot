@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add history/prompts/001-todo-ai-chatbot/27-upload-project-to-github.misc.prompt.md)"
+    ]
+  }
+}
