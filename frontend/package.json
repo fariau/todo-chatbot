@@ -12,7 +12,7 @@
     "vercel-build": "next build"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.0",
